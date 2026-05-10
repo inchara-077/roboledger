@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Robot {
+  id           Int      @id @default(autoincrement())
+  robotId      String   @unique
+  name         String
+  model        String
+  manufacturer String
+  wallet       String
+  status       String
+  createdAt    DateTime @default(now())
+
+  proofs       Proof[]
+}
+
+model Proof {
+  id                Int      @id @default(autoincrement())
+
+  proofHash         String
+  signature         String
+
+  verification      Boolean  @default(true)
+
+  txSignature       String?
+
+  auditStatus       String   @default("PENDING")
+
+  riskLevel         String   @default("LOW")
+
+  riskScore         Int      @default(0)
+
+  complianceNotes   String?
+
+  robotId           String
+
+  createdAt         DateTime @default(now())
+
+  robot Robot @relation(fields: [robotId], references: [robotId])
+}
