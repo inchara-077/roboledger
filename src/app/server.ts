@@ -7,6 +7,8 @@ import healthRoutes from "./routes/health.routes";
 import proofRoutes from "../modules/proof/proof.routes";
 import robotRoutes from "../modules/robot/robot.routes";
 
+import attestationRoutes from "../attestation/routes/attestation.routes";
+
 import "../../src/events/proof.listeners";
 
 const server = Fastify({
@@ -26,14 +28,14 @@ async function startServer() {
 
     // Request Logging
     server.addHook("onRequest", async (request) => {
-      console.log("\n================================");
+      console.log("\n==============================");
       console.log("NEW REQUEST");
-      console.log("================================");
+      console.log("==============================");
       console.log("Request ID :", request.id);
       console.log("Method     :", request.method);
       console.log("URL        :", request.url);
       console.log("Time       :", new Date().toISOString());
-      console.log("================================\n");
+      console.log("==============================\n");
     });
 
     // Root Route
@@ -55,6 +57,11 @@ async function startServer() {
     // Robot Routes
     await server.register(robotRoutes, {
       prefix: "/robot",
+    });
+
+    // Attestation Routes
+    await server.register(attestationRoutes, {
+      prefix: "/attestation",
     });
 
     // Start Server
