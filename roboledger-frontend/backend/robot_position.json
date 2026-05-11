@@ -1,0 +1,27 @@
+{
+  "robots": [
+    {
+      "id": "RBT-01",
+      "position": {
+        "x": 600.5,
+        "y": 450.2,
+        "z": 0.0
+      },
+      "battery": 85,
+      "status": "active",
+      "current_task": "task-A1"
+    },
+    {
+      "id": "RBT-02",
+      "position": {
+        "x": 350.3,
+        "y": 800.1,
+        "z": 0.0
+      },
+      "battery": 42,
+      "status": "returning",
+      "current_task": null
+    }
+  ],
+  "timestamp": "2026-05-09T19:00:00Z"
+}
